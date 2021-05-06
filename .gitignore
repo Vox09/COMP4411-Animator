@@ -18,6 +18,7 @@ Release/
 **/*.cbp
 **/CMakeScripts
 **/compile_commands.json
+**CMake**
 
 **Debug/
 
