@@ -82,6 +82,7 @@ public:
 	template <class U> friend Mat3<U> operator *( const Mat3<U>& a, const double d );
 	template <class U> friend Mat3<U> operator *( const double d, const Mat3<U>& a );
 	template <class U> friend Mat3<U> operator /( const Mat3<U>& a, const double d );
+	template <class U> friend Vec3<U> operator *( const Mat3<U>& a, const Vec3<U>& b );
 	template <class U> friend bool operator ==( const Mat3<U>& a, const Mat3<U>& b );
 	template <class U> friend bool operator !=( const Mat3<U>& a, const Mat3<U>& b );
 

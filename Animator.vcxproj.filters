@@ -99,6 +99,15 @@
     <ClCompile Include="rulerwindow.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="tom.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="HTreeNode.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="kinematic.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="curve.h">
@@ -160,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="vec.h">
       <Filter>Header Files\Math.</Filter>
+    </ClInclude>
+    <ClInclude Include="modelerglobals.h">
+      <Filter>Header Files\Model.</Filter>
+    </ClInclude>
+    <ClInclude Include="HTreeNode.h">
+      <Filter>Header Files\Model.</Filter>
+    </ClInclude>
+    <ClInclude Include="kinematic.h">
+      <Filter>Header Files\Model.</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

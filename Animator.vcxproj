@@ -158,6 +158,8 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="HTreeNode.cpp" />
+    <ClCompile Include="kinematic.cpp" />
     <ClCompile Include="linearcurveevaluator.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -260,13 +262,17 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="tom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="curve.h" />
     <ClInclude Include="curveevaluator.h" />
+    <ClInclude Include="HTreeNode.h" />
+    <ClInclude Include="kinematic.h" />
     <ClInclude Include="linearcurveevaluator.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="modelerdraw.h" />
+    <ClInclude Include="modelerglobals.h" />
     <ClInclude Include="modelerui.h" />
     <ClInclude Include="modeleruiwindows.h" />
     <ClInclude Include="modelerview.h" />

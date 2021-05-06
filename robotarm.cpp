@@ -4,6 +4,7 @@
 #pragma warning (disable : 4244)
 #pragma warning(disable : 4786)
 
+#ifdef SAMPLE
 #include "modelerview.h"
 #include "modelerapp.h"
 #include "modelerdraw.h"
@@ -289,3 +290,4 @@ int main()
 
     return ModelerApplication::Instance()->Run();
 }
+#endif
