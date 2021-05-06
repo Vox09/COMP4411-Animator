@@ -1,7 +1,6 @@
 #include "kinematic.h"
 #include "modelerglobals.h"
 
-#include <cmath>
 using std::vector;
 using std::pair;
 
@@ -14,28 +13,30 @@ double distance(const Vec3d& a, const Vec3d& b)
 	return tmp.length2();
 }
 
-Mat3d kRotate(const double angle, const Vec3d& R_)
+Mat4d kTransform(const double angle, const Vec3d& R, const Vec3d& T)
 {
-	Vec3d R = R_;
-	R.normalize();
+	Vec3d nR = R;
+	nR.normalize();
 	double c = cos(angle * M_PI / 180.0f);
 	double s = sin(angle * M_PI / 180.0f);
-	return Mat3d(
+	return Mat4d(
 		{
-		c + (1 - c) * R[0] * R[0], (1 - c) * R[0] * R[1] - s * R[2], (1 - c) * R[0] * R[2] + s * R[1],
-		(1 - c) * R[1] * R[0] + s * R[2], c + (1 - c) * R[1] * R[1], (1 - c) * R[1] * R[2] - s * R[0],
-		(1 - c) * R[2] * R[0] - s * R[1], (1 - c) * R[2] * R[1] + s * R[0], c + (1 - c) * R[2] * R[2]
+		c + (1 - c) * nR[0] * nR[0], (1 - c) * nR[0] * nR[1] - s * nR[2], (1 - c) * nR[0] * nR[2] + s * nR[1], T[0],
+		(1 - c) * nR[1] * nR[0] + s * nR[2], c + (1 - c) * nR[1] * nR[1], (1 - c) * nR[1] * nR[2] - s * nR[0], T[1],
+		(1 - c) * nR[2] * nR[0] - s * nR[1], (1 - c) * nR[2] * nR[1] + s * nR[0], c + (1 - c) * nR[2] * nR[2], T[2],
+		0, 0, 0, 1
 		}
 	);
+
 }
 
 Vec3d kForward(std::vector<HTreeNode*>& nodes) {
-	Vec3d rst = nodes.back()->T;
-	for (int i = nodes.size()-1 ; i >=0; --i)
+	Vec3d rst;
+	for (int i = nodes.size() - 1; i >= 0; --i)
 	{
-		Mat3d rot = kRotate(nodes[i]->angle, nodes[i]->R);
-		rst = rot * rst;
-		rst = rst + nodes[i]->T;
+		Mat4d t = kTransform(nodes[i]->angle, nodes[i]->R, nodes[i]->T);
+		// 4d mat * 3d vec. defined in math lib
+		rst = t * rst;
 	}
 	return Vec3d(rst[0], rst[1], rst[2]);
 }
@@ -54,7 +55,6 @@ IKinematic::IKinematic(vector<HTreeNode*>& nodes_):
 
 void IKinematic::solve(Vec3d target)
 {
-	//kForward(nodes);
 	double dist_before = distance(target, kForward(nodes));
 	for (int itr = 0; itr < IK_MAX_IT; ++itr)
 	{
