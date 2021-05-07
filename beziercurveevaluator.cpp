@@ -15,7 +15,7 @@ void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 	Mat4<float> M(-1, 3, -3, 1, 3, -6, 3, 0, -3, 3, 0, 0, 1, 0, 0, 0);
 	int flag = 0;
 	for (vector<Point>::const_iterator i = ptvCtrlPts.begin(); i != ptvCtrlPts.end(); ) {
-		if ((i + 3) < ptvCtrlPts.end()) {
+		if (i < (ptvCtrlPts.end() - 3)) {
 			Vec4<float> px((*i).x, (*(i + 1)).x, (*(i + 2)).x, (*(i + 3)).x);
 			Vec4<float> py((*i).y, (*(i + 1)).y, (*(i + 2)).y, (*(i + 3)).y);
 			for (float t = 0; t <= 1; t += interval) {
@@ -26,7 +26,7 @@ void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 			}
 			i += 3;
 		}
-		else if ((bWrap) && ((i + 3) == ptvCtrlPts.end())) {
+		else if ((bWrap) && (i == (ptvCtrlPts.end() - 3))) {
 			Vec4<float> px((*i).x, (*(i + 1)).x, (*(i + 2)).x, ptvCtrlPts[0].x + fAniLength);
 			Vec4<float> py((*i).y, (*(i + 1)).y, (*(i + 2)).y, ptvCtrlPts[0].y);
 			for (float t = 0; t <= 1; t += interval) {

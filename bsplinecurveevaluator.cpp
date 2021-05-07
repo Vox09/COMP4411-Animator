@@ -53,7 +53,7 @@ void BsplineCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 	}
 	
 	for (vector<Point>::const_iterator i = ControlPoints.begin(); i != ControlPoints.end(); i++) {
-		if ((i + 3) < ControlPoints.end()) {
+		if (i < (ControlPoints.end() - 3)) {
 			Vec4<float> Bx((*i).x, (*(i + 1)).x, (*(i + 2)).x, (*(i + 3)).x);
 			Vec4<float> By((*i).y, (*(i + 1)).y, (*(i + 2)).y, (*(i + 3)).y);
 			Vec4<float> Vx = BtoV * Bx;

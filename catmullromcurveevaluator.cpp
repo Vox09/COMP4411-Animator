@@ -35,7 +35,7 @@ void CatmullromCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPt
 		}
 	}
 	for (vector<Point>::const_iterator i = ControlPoints.begin(); i != ControlPoints.end(); i++) {
-		if ((i + 3) < ControlPoints.end()) {
+		if (i < (ControlPoints.end() - 3)) {
 			float Rx1 = (1.0 / 6) * ((double)(i + 2)->x - (double)i->x);
 			float Rx2 = (1.0 / 6) * ((double)(i + 3)->x - (double)(i + 1)->x);
 			float Ry1 = (1.0 / 6) * ((double)(i + 2)->y - (double)i->y);
