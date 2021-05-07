@@ -21,12 +21,8 @@ enum TomModelControls
 	//light
 	LIGHT_X, LIGHT_Y, LIGHT_Z,
 	LIGHT_INTENSITY,
-	//alpha
-	FOG_INDEX,
 	//change component
 	BODYCHANGE, HEADCHANGE,
-	//change texture
-	TEXTURE,
 	//
 	MOOD,
 	//inverse kinematics

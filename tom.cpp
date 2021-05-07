@@ -811,13 +811,11 @@ int main()
 	controls[LIGHT_Y] = ModelerControl("Light Y Position", -30.0, 30.0, 0.01f, 12);
 	controls[LIGHT_Z] = ModelerControl("Light Z Position", -30.0, 30.0, 0.01f, 22);
 	controls[LIGHT_INTENSITY] = ModelerControl("Light Intensity", 0.0, 5.0, 0.01f, 1.3);
-	controls[FOG_INDEX] = ModelerControl("Fog Density", 0.0, 3.0, 1, 0.0);
 	controls[BODYCHANGE] = ModelerControl("Change Body Component", 0.0, 1.0, 1, 0.0);
 	controls[HEADCHANGE] = ModelerControl("Change Head Component", 0.0, 1.0, 1, 0.0);
-	controls[TEXTURE] = ModelerControl("Change Texture", 0.0, 1.0, 1, 0.0);
-    controls[IK_X] = ModelerControl("IK X Position", -1.0, 1.0, 0.001f, 0.0);
-    controls[IK_Y] = ModelerControl("IK Y Position", -10.0, 10.0, 0.001f, 0.0);
-    controls[IK_Z] = ModelerControl("IK Z Position", -10.0, -0.0, 0.001f, -7.0);
+    controls[IK_X] = ModelerControl("IK Tail X Position", -1.0, 1.0, 0.001f, 0.0);
+    controls[IK_Y] = ModelerControl("IK Tail Y Position", -10.0, 10.0, 0.001f, 0.0);
+    controls[IK_Z] = ModelerControl("IK Tail Z Position", -10.0, -0.0, 0.001f, -7.0);
     controls[IK_CSTR_1L] = ModelerControl("IK Body Constrain Low", -180, 180, 1, 0);
     controls[IK_CSTR_1H] = ModelerControl("IK Body Constrain High", -180, 180, 1, 90);
     controls[IK_CSTR_2L] = ModelerControl("IK Up Tail Constrain Low", -180, 180, 1, 0);
