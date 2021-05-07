@@ -13,7 +13,10 @@
 #include "particleSystem.h"
 
 // fxck the framework
-vector<HTreeNode*> particleNodes;
+vector<HTreeNode*> leftHandNodes;
+vector<HTreeNode*> rightHandNodes;
+vector<HTreeNode*> tailNodes;
+float getParticleCount() { return VAL(PARTICLE_COUNT); }
 
 // This is a list of the controls for the RobotArm
 // We'll use these constants to access the values 
@@ -246,11 +249,21 @@ public:
 		ikNodes.push_back(pTailEnd);
 		ik = IKinematic(ikNodes);
 
-		particleNodes.push_back(root);
-		particleNodes.push_back(pBody);
-		particleNodes.push_back(pUTail);
-		particleNodes.push_back(pDTail);
-		particleNodes.push_back(pTailEnd);
+		tailNodes.push_back(root);
+		tailNodes.push_back(pBody);
+		tailNodes.push_back(pUTail);
+		tailNodes.push_back(pDTail);
+		tailNodes.push_back(pTailEnd);
+
+		leftHandNodes.push_back(root);
+		leftHandNodes.push_back(pLUArm);
+		leftHandNodes.push_back(pLDArm);
+		leftHandNodes.push_back(pLHand);
+
+		rightHandNodes.push_back(root);
+		rightHandNodes.push_back(pRUArm);
+		rightHandNodes.push_back(pRDArm);
+		rightHandNodes.push_back(pRHand);
 	}
 
     virtual void draw();
@@ -810,10 +823,16 @@ int main()
     controls[IK_CSTR_3L] = ModelerControl("IK Down Tail Constrain Low", -180, 180, 1, 0);
     controls[IK_CSTR_3H] = ModelerControl("IK Down Tail Constrain High", -180, 180, 1, 0);
 	controls[MOOD] = ModelerControl("Change Mood", 0.0, 3.0, 1, 0.0);
+	controls[PARTICLE_COUNT] = ModelerControl("Particle count (number per second)", 0.0, 60, 1, 30.0);
 
     ModelerApplication::Instance()->Init(&createTomModel, controls, NUMCONTROLS);
 	ParticleSystem* ps = new ParticleSystem();
-	ps->setNodes(0, &particleNodes);
+	ps->setNodes(0, &leftHandNodes);
+	ps->setNodes(1, &rightHandNodes);
+	ps->setNodes(2, &tailNodes);
+	ps->setParticleCount(0, &getParticleCount);
+	ps->setParticleCount(1, &getParticleCount);
+	ps->setParticleCount(2, &getParticleCount);
 	ModelerApplication::Instance()->SetParticleSystem(ps);
     return ModelerApplication::Instance()->Run();
 }

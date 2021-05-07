@@ -30,6 +30,8 @@ enum TomModelControls
 	IK_CSTR_1L, IK_CSTR_1H, 
 	IK_CSTR_2L, IK_CSTR_2H, 
 	IK_CSTR_3L, IK_CSTR_3H, 
+	// particle count
+	PARTICLE_COUNT,
 	NUMCONTROLS
 };
 #endif 
