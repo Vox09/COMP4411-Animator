@@ -19,7 +19,8 @@ ParticleSystem::ParticleSystem()
 {
 	// TODO
 	particles.push_back(new Particle());
-
+	particles.push_back(new Particle());
+	particles.push_back(new Particle());
 }
 
 
@@ -164,4 +165,10 @@ void ParticleSystem::setNodes(int index, const vector<HTreeNode*>* nodes)
 	particles[index]->setNodes(nodes);
 }
 
+void ParticleSystem::setParticleCount(int index, PCfxn pcFxn)
+{
+	if (index >= particles.size())
+		return;
+	particles[index]->setParticleCount(pcFxn);
+}
 
