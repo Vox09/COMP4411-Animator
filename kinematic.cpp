@@ -30,15 +30,21 @@ Mat4d kTransform(const double angle, const Vec3d& R, const Vec3d& T)
 
 }
 
-Vec3d kForward(std::vector<HTreeNode*>& nodes) {
-	Vec3d rst;
+Mat4d kTransform(const std::vector<HTreeNode*>& nodes)
+{
+	Mat4d rst; // entity
 	for (int i = nodes.size() - 1; i >= 0; --i)
 	{
 		Mat4d t = kTransform(nodes[i]->angle, nodes[i]->R, nodes[i]->T);
-		// 4d mat * 3d vec. defined in math lib
 		rst = t * rst;
 	}
-	return Vec3d(rst[0], rst[1], rst[2]);
+	return rst;
+}
+
+Vec3d kForward(const std::vector<HTreeNode*>& nodes) {
+	Vec3d rst;
+	rst = kTransform(nodes) * rst;
+	return rst;
 }
 
 IKinematic::IKinematic() {}

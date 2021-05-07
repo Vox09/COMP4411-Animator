@@ -17,10 +17,14 @@
 #define __PARTICLE_SYSTEM_H__
 
 #include "vec.h"
+#include "particle.h"
+#include <vector>
 
 
+using std::vector;
 
 class ParticleSystem {
+	vector<Particle*> particles;
 
 public:
 
@@ -73,6 +77,7 @@ public:
 	void setDirty(bool d) { dirty = d; }
 
 
+	void setNodes(int index, const vector<HTreeNode*>* nodes);
 
 protected:
 	

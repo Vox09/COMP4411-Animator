@@ -10,6 +10,11 @@
 #include "HTreeNode.h"
 #include "kinematic.h"
 
+#include "particleSystem.h"
+
+// fxck the framework
+vector<HTreeNode*> particleNodes;
+
 // This is a list of the controls for the RobotArm
 // We'll use these constants to access the values 
 // of the controls from the user interface.
@@ -240,6 +245,12 @@ public:
 		ikNodes.push_back(pDTail);
 		ikNodes.push_back(pTailEnd);
 		ik = IKinematic(ikNodes);
+
+		particleNodes.push_back(root);
+		particleNodes.push_back(pBody);
+		particleNodes.push_back(pUTail);
+		particleNodes.push_back(pDTail);
+		particleNodes.push_back(pTailEnd);
 	}
 
     virtual void draw();
@@ -697,8 +708,6 @@ void TomModel::drawRightEye() {
 	}
 }
 
-
-
 void load_texture()
 {
 	int width;
@@ -776,6 +785,7 @@ void drawTorus(double r, double thickness) {
 	}
 }
 
+
 int main()
 {
 	// Initialize the controls
@@ -803,6 +813,9 @@ int main()
 	controls[MOOD] = ModelerControl("Change Mood", 0.0, 3.0, 1, 0.0);
 
     ModelerApplication::Instance()->Init(&createTomModel, controls, NUMCONTROLS);
+	ParticleSystem* ps = new ParticleSystem();
+	ps->setNodes(0, &particleNodes);
+	ModelerApplication::Instance()->SetParticleSystem(ps);
     return ModelerApplication::Instance()->Run();
 }
 

@@ -13,7 +13,8 @@
 
 double distance(const Vec3d& a, const Vec3d& b);
 
-Vec3d kForward(std::vector<HTreeNode*>& nodes);
+Mat4d kTransform(const std::vector<HTreeNode*>& nodes);
+Vec3d kForward(const std::vector<HTreeNode*>& nodes);
 
 class IKinematic
 {
