@@ -16,7 +16,6 @@ using std::pair;
 
 typedef list<PointObj> Frame;
 typedef pair<float, Frame> TimeFrame;
-typedef float (*PCfxn)(void);
 
 class Particle
 {
@@ -25,10 +24,7 @@ class Particle
 	list<TimeFrame> cache;
 	Frame now_frame;
 	float now_time;
-
 	const vector<HTreeNode*>* nodes;
-	PCfxn pcFxn;
-	float pcHelper;
 	 
 	void drawFrame(const Frame& frame);
 	Vec3f force(const PointObj& point);
@@ -45,7 +41,6 @@ public:
 	void clear();
 
 	void setNodes(const vector<HTreeNode*>* nodes);
-	void setParticleCount(PCfxn pcFxn);
 };
 
 #endif // PARTICLE_H

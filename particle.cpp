@@ -1,13 +1,10 @@
 #include "particle.h"
 #include <FL/gl.h>
 
-Particle::Particle() :
+Particle::Particle():
 	bake_start_time(-1),
 	bake_end_time(-1),
-	now_time(0),
-	nodes(nullptr),
-	pcFxn(nullptr),
-	pcHelper(0)
+	now_time(0)
 {}
 
 Particle::~Particle()
@@ -52,24 +49,12 @@ void Particle::update(float t)
 		now_time += EULER_EPS;
 	}
 	// create new particles
-	float last_time = bake_start_time;
-	if (!cache.empty())
-		last_time = cache.back().first;
-	pcHelper += pcFxn() * (t - last_time);
-	if (pcHelper > 1.0f)
-	{
-		int n = int(pcHelper);
-		for (int i = 0; i < n; ++i)
-		{
-			Mat4d transform = kTransform(*nodes);
-			Vec3d pos;
-			Vec3d vel(rand() / double(RAND_MAX), rand() / double(RAND_MAX), rand() / double(RAND_MAX));
-			pos = transform * pos;
-			vel = transform * vel;
-			now_frame.push_front(PointObj(t, 0.001, pos, vel));
-		}
-		pcHelper -= n;
-	}
+	Mat4d transform = kTransform(*nodes);
+	Vec3d pos;
+	Vec3d vel(rand()/double(RAND_MAX), rand()/double(RAND_MAX), rand()/double(RAND_MAX));
+	pos = transform * pos;
+	vel = transform * vel;
+	now_frame.push_front(PointObj(t, 0.001, pos, vel));
 }
 
 void Particle::drawNew(float t)
@@ -119,10 +104,6 @@ void Particle::setNodes(const vector<HTreeNode*>* ns)
 	nodes = ns;
 }
 
-void Particle::setParticleCount(PCfxn f)
-{
-	pcFxn = f;
-}
 
 void Particle::drawFrame(const Frame& f)
 {
@@ -143,11 +124,7 @@ void Particle::drawFrame(const Frame& f)
 
 Vec3f Particle::force(const PointObj& p)
 {
-	float drag = -0.1;
-	Vec3f rst(drag * p.vx * p.mass, drag * p.vy * p.mass, drag * p.vz * p.mass);
-	if (p.y <= -10.0)
-		rst[1] -= 2 * p.mass * p.vy / EULER_EPS;
-	rst[1] += -9.8 * p.mass;
-	return rst;
+	return Vec3f(0, -9.8 * p.mass, 0);
 }
+
 

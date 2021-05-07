@@ -78,7 +78,6 @@ public:
 
 
 	void setNodes(int index, const vector<HTreeNode*>* nodes);
-	void setParticleCount(int index, PCfxn pcFxn);
 
 protected:
 	
