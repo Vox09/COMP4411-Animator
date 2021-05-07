@@ -263,6 +263,9 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="tom.cpp" />
+    <ClCompile Include="beziercurveevaluator.cpp" />
+    <ClCompile Include="bsplinecurveevaluator.cpp" />
+    <ClCompile Include="catmullromcurveevaluator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="curve.h" />
@@ -288,6 +291,9 @@
     <ClInclude Include="rulerwindow.h" />
     <ClInclude Include="mat.h" />
     <ClInclude Include="vec.h" />
+    <ClInclude Include="beziercurveevaluator.h" />
+    <ClInclude Include="bsplinecurveevaluator.h" />
+    <ClInclude Include="catmullromcurveevaluator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cleanskel.pl" />
