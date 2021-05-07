@@ -283,6 +283,7 @@ void TomModel::draw()
 	ik.solve(ikTarget);
 	// arg is depth
 	root->draw(0);
+	endDraw();
 }
 
 void TomModel::updateDynamics()
